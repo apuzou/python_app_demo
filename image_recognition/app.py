@@ -11,16 +11,18 @@ import time
 
 import json
 import streamlit as st
+from streamlit.errors import StreamlitSecretNotFoundError
 
 # '''
 # 認証
 # 資格情報を検証し、クライアントを作成する。
 # '''
-if "VISION_ENDPOINT" in st.secrets:
+try:
     VISION_ENDPOINT = st.secrets["VISION_ENDPOINT"]
     VISION_KEY = st.secrets["VISION_KEY"]
-else:
-    with open('image_recognition/secret.json') as f:
+except (StreamlitSecretNotFoundError, KeyError, FileNotFoundError):
+    secret_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "secret.json")
+    with open(secret_path) as f:
         secret = json.load(f)
     VISION_ENDPOINT = secret["VISION_ENDPOINT"]
     VISION_KEY = secret["VISION_KEY"]
