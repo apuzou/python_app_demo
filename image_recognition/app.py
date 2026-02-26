@@ -10,6 +10,7 @@ import sys
 import time
 
 import json
+import streamlit as st
 
 # '''
 # 認証
@@ -49,7 +50,6 @@ def get_tags(local_image):
         tags_name.append(tag.name)
     return tags_name
 
-import streamlit as st
 from PIL import ImageDraw
 from PIL import ImageFont
 
