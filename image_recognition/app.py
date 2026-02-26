@@ -11,15 +11,18 @@ import time
 
 import json
 
-with open('image_recognition/secret.json') as f:
-    secret = json.load(f)
-
 # '''
 # 認証
 # 資格情報を検証し、クライアントを作成する。
 # '''
-VISION_KEY = secret["VISION_KEY"]
-VISION_ENDPOINT = secret["VISION_ENDPOINT"]
+if "VISION_ENDPOINT" in st.secrets:
+    VISION_ENDPOINT = st.secrets["VISION_ENDPOINT"]
+    VISION_KEY = st.secrets["VISION_KEY"]
+else:
+    with open('image_recognition/secret.json') as f:
+        secret = json.load(f)
+    VISION_ENDPOINT = secret["VISION_ENDPOINT"]
+    VISION_KEY = secret["VISION_KEY"]
 
 computervision_client = ComputerVisionClient(VISION_ENDPOINT, CognitiveServicesCredentials(VISION_KEY))
 
