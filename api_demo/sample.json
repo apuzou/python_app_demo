@@ -1,0 +1,22 @@
+// /docs try it out のサンプル
+
+{
+    "shopinfo": {
+        "name": "ABC store",
+        "address": "Tokyo"
+    },
+
+    "items": [
+        {
+        "name": "test1",
+        "description": "test1",
+        "price": 100,
+        "tax": 1.1
+    },
+        {
+        "name": "test2",
+        "description": "test2",
+        "price": 200,
+        "tax": 1.1
+    }]
+}
